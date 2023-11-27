@@ -25,7 +25,7 @@ public class VentanaInicio {
 		listaJuegos.add("Juego4");
 		listaJuegos.add("Juego5");
 		listaJuegos.add("Juego6");
-
+		//hola
 
 		if (listaJuegos != null)
 		{
