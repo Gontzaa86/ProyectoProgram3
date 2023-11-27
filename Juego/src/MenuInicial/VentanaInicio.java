@@ -8,6 +8,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
+import javax.swing.JLabel;
+import java.awt.Font;
 
 public class VentanaInicio {
 
@@ -41,13 +43,20 @@ public class VentanaInicio {
 		JScrollPane scrollPane = new JScrollPane(panel);
 		scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
-		scrollPane.setBounds(10, 110, 480, 248);
+		scrollPane.setBounds(10, 110, 480, 237);
 
 		JPanel contentPane = new JPanel(null);
 		contentPane.setPreferredSize(new Dimension(500, 400));
 		contentPane.add(scrollPane);
 
 		frame.setContentPane(contentPane);
+		
+		JLabel textoTitulo = new JLabel("Título");
+		textoTitulo.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 18));
+		textoTitulo.setHorizontalAlignment(SwingConstants.CENTER);
+		textoTitulo.setBounds(10, 23, 480, 32);
+		contentPane.add(textoTitulo);
+		
 		frame.pack();
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.setVisible(true);
