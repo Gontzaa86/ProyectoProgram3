@@ -34,7 +34,7 @@ public class juegoMenu extends JFrame {
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
 		
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 624, 432);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
