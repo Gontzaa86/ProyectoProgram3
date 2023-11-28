@@ -1,4 +1,4 @@
-package Snake3;
+package Snake;
 
 import MenuInicial.Main;
 

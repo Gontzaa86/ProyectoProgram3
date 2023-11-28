@@ -1,7 +1,7 @@
 package MenuInicial;
 
 import Pacman.juegoVentanaPacman;
-import Snake3.juegoMenu;
+import Snake.juegoMenu;
 
 public class Main 
 {
