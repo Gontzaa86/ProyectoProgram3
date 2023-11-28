@@ -23,7 +23,7 @@ public class juegoVentana extends JFrame {
 		this.setVisible(true);
 		
 		JLabel lblHierba = new JLabel("New label");
-		lblHierba.setIcon(new ImageIcon("C:\\Users\\antonio.cancio\\OneDrive - Universidad de Deusto\\Documentos\\2º Ingeniería\\Programacion3\\Juegos\\Retro\\src\\Snake3\\hierba.jpg"));
+		lblHierba.setIcon(new ImageIcon(juegoVentana.class.getResource("hierba.jpg")));
 		lblHierba.setBounds(0, 0, 500, 500);
 		getContentPane().add(lblHierba);
 		//juegocontenido.add(lblHierba); para modificar tamaño

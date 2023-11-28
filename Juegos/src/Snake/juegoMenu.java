@@ -19,6 +19,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.net.URL;
 import java.awt.Color;
 import javax.swing.JSlider;
 import javax.swing.JTextArea;
@@ -154,13 +155,13 @@ public class juegoMenu extends JFrame {
 		JLabel lblFondo = new JLabel("New label");
 		lblFondo.setBounds(0, 0, 610, 395);
 		contentPane.add(lblFondo);
-		SetImageLabel(lblFondo, "C:\\Users\\antonio.cancio\\OneDrive - Universidad de Deusto\\Documentos\\2º Ingeniería\\Programacion3\\Juegos\\Retro\\src\\Snake3\\SnakeFondo.png");
+		SetImageLabel(lblFondo, juegoMenu.class.getResource("SnakeFondo.png"));
 		
 		
 	}
 	
-	private void SetImageLabel (JLabel labelName, String root) {
-		ImageIcon image = new ImageIcon(root);
+	private void SetImageLabel (JLabel labelName, URL url) {
+		ImageIcon image = new ImageIcon(url);
 		icon = new ImageIcon(image.getImage().getScaledInstance(labelName.getWidth(),labelName.getHeight(),Image.SCALE_AREA_AVERAGING));
 		labelName.setIcon(icon);
 		this.repaint();
