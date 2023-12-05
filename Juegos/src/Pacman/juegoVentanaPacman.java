@@ -1,12 +1,13 @@
 package Pacman;
 
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-
-import Pacman.juegoContenidoPacman;
 
 public class juegoVentanaPacman extends JFrame{
+/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 public juegoVentanaPacman() {
 		
 		juegoContenidoPacman juegocontenido = new juegoContenidoPacman();

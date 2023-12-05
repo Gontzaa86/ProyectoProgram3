@@ -1,11 +1,12 @@
 package Snake;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
+<<<<<<< HEAD
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+=======
+>>>>>>> branch 'master' of https://github.com/Gontzaa86/ProyectoProgram3
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import java.awt.Font;
@@ -13,6 +14,11 @@ import javax.swing.SwingConstants;
 import java.awt.Color;
 
 public class juegoVentana extends JFrame {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public juegoVentana(int velocidad, boolean bloque, boolean pared) {
 		
 		juegoContenido juegocontenido = new juegoContenido(velocidad,bloque,pared);
