@@ -7,13 +7,17 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 import java.util.Random;
 
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
 public class juegoContenidoPacman extends JPanel implements ActionListener{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	//pantalla
 	static final int PANTALLA = 510;
 	static final int CUADRITO_SIZE = 20;
@@ -30,11 +34,13 @@ public class juegoContenidoPacman extends JPanel implements ActionListener{
 	
 	//punto
 	static final int TOTAL_PUNTO = (PANTALLA*PANTALLA)/CUADRITO_SIZE;
-	int[] puntoX = new int [TOTAL_PUNTO];
-	int[] puntoY = new int[TOTAL_PUNTO];
+	//int[] puntoX = new int [TOTAL_PUNTO];
+	//int[] puntoY = new int[TOTAL_PUNTO];
+	ArrayList<Integer> puntoX = new ArrayList<Integer>();
+	ArrayList<Integer> puntoY = new ArrayList<Integer>();
 	int inicialX = 8;
 	int inicialY = 8;
-	int contPunto=0;
+	int contPunto= 0;
 	
 	//bloque
 	static final int TOTAL_BLOQUE = (PANTALLA*PANTALLA)/CUADRITO_SIZE;
@@ -89,9 +95,9 @@ public class juegoContenidoPacman extends JPanel implements ActionListener{
 	
 	public void agregarPunto() {
 		while (contPunto < 169) {
-			puntoX[contPunto] = inicialX;
-			puntoY[contPunto] = inicialY;
-			
+			puntoX.add(inicialX);
+			puntoY.add(inicialY);
+						
 			if (inicialX<500) {
 				inicialX = inicialX + 40;
 			}
@@ -107,10 +113,31 @@ public class juegoContenidoPacman extends JPanel implements ActionListener{
 		
 	}
 	
+	public void revisarPunto() {
+		for (int i = 0; i<200;i++) {
+			if (pacmanX == puntoX.get(i)) {
+				
+			}
+		}
+	}
+	
 	public void revisarColisiones(){
-		//pared
-		if (direccion_siguiente == 'd' && pacmanX>(PANTALLA-20)) {
+		//bloquear pared X menos el hueco
+		if (pacmanX>PANTALLA && pacmanY==260) {
+			pacmanX=0;
+		}else if (pacmanX>(PANTALLA-20) && pacmanY!=260) {
 			pacmanX=pacmanX-20;
+		}else if (pacmanX<0 && pacmanY!=260) {
+			pacmanX=pacmanX+20;
+		}
+		
+		//bloquear pared Y menos el hueco
+		if (pacmanX<0 && pacmanY==260) {
+			pacmanX=PANTALLA;
+		}else if (pacmanY>(PANTALLA-20)) {
+			pacmanY=pacmanY-20;
+		}else if (pacmanY<0) {
+			pacmanY=pacmanY+20;
 		}
 	}
 	
@@ -120,7 +147,6 @@ public class juegoContenidoPacman extends JPanel implements ActionListener{
 			revisarColisiones();
 		}
 		repaint();
-		
 	}
 
 	public void paintComponent(Graphics g) {
@@ -134,15 +160,28 @@ public class juegoContenidoPacman extends JPanel implements ActionListener{
 		g.drawLine(509, 0, 509, 250);
 		g.drawLine(509, 290, 509, 510);
 		
-		//puntos recoger
+		//puntos blancos
 		g.setColor(Color.white);
 		for (int i=0; i<contPunto; i++) {
 			if (i == 0 || i==12 || i==156 || i == 168) {
-				g.fillOval(puntoX[i], puntoY[i], CUADRITO_SIZE, CUADRITO_SIZE);
+				g.fillOval(puntoX.get(i), puntoY.get(i), CUADRITO_SIZE, CUADRITO_SIZE);
 			}else {
-				g.fillOval(puntoX[i], puntoY[i], 5, 5); //posicion x,y tamaño x,y
+				g.fillOval(puntoX.get(i), puntoY.get(i), 5, 5); //posicion x,y tamaño x,y
 			}
 		}
+		
+		/**Eliminar puntos
+		g.setColor(Color.black);
+		for (int i=0; i<contPunto; i++) {
+			if (pacmanX > puntoX[i]-8) {
+				if (i == 0 || i==12 || i==156 || i == 168) {
+					g.fillOval(puntoX[i], puntoY[i], CUADRITO_SIZE, CUADRITO_SIZE);
+				}else {
+					g.fillOval(puntoX[i], puntoY[i], 5, 5); //posicion x,y tamaño x,y
+				}
+			}
+		}**/
+		
 		//color pacman
 		g.setColor(Color.yellow);
 		if (contador%2==0) {

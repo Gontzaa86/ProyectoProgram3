@@ -20,9 +20,6 @@ import javax.swing.JSlider;
 import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 
-import Snake.juegoMenu;
-import Snake.juegoVentana;
-
 public class juegoMenuPacman extends JFrame {
 
 	/**

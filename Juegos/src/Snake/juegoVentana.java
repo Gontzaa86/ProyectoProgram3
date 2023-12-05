@@ -1,14 +1,15 @@
 package Snake;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 
 public class juegoVentana extends JFrame {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public juegoVentana(int velocidad, boolean bloque, boolean pared) {
 		
 		juegoContenido juegocontenido = new juegoContenido(velocidad,bloque,pared);
