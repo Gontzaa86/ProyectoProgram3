@@ -1,12 +1,10 @@
 package Snake;
 
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Image;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import javax.swing.JLabel;
@@ -23,10 +21,13 @@ import java.net.URL;
 import java.awt.Color;
 import javax.swing.JSlider;
 import javax.swing.JTextArea;
-import javax.swing.JScrollBar;
 
 public class juegoMenu extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	Icon icon;
 	juegoVentana juegoventana;
@@ -102,7 +103,7 @@ public class juegoMenu extends JFrame {
 		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.exit(0);
+				dispose();
 			}
 		});
 		btnCancelar.setForeground(new Color(255, 255, 255));

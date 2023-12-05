@@ -1,6 +1,6 @@
 package MenuInicial;
 
-import Pacman.juegoVentanaPacman;
+import Pacman.juegoMenuPacman;
 import Snake.juegoMenu;
 
 public class Main 
@@ -12,6 +12,6 @@ public class Main
 	
 	public void iniciarPacMan()
 	{
-		new juegoVentanaPacman();
+		new juegoMenuPacman();
 	}
 }
