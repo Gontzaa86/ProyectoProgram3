@@ -55,6 +55,9 @@ public class juegoContenido extends JPanel implements ActionListener {
 	//otros
 	Random random = new Random();
 	
+	//Puntos
+	double puntuacion = 0;
+	
 	public juegoContenido(int velocidad, boolean bloque, boolean pared){
 		
 		this.setPreferredSize(new Dimension(PANTALLA,PANTALLA)); //tammax y tammin
@@ -62,7 +65,7 @@ public class juegoContenido extends JPanel implements ActionListener {
 		this.setFocusable(true);
 		this.addKeyListener(new Controles());
 		agregarComida();
-		this.bloque=bloque;
+		this.bloque = bloque;
 		agregarBloque(bloque);
 		this.pared = pared;
 		this.DELAY = 250-velocidad;
@@ -118,6 +121,7 @@ public class juegoContenido extends JPanel implements ActionListener {
 			cuerpo_serpiente++;
 			agregarComida();
 			agregarBloque(this.bloque);
+			calcularPuntuacion();
 		}
 	}
 
@@ -195,6 +199,26 @@ public class juegoContenido extends JPanel implements ActionListener {
 		for(int i=0; i<contBloque; i++) {
 			g.fillRect(bloqueX[i], bloqueY[i], CUADRITO_SIZE, CUADRITO_SIZE);
 		}
+	}
+
+	//Calcula la puntuacion segun la velocidad escogida y si hay bloques y/o pared.
+	public double calcularPuntuacion()
+	{
+		if (bloque == false && pared == false)
+		{
+			puntuacion = puntuacion + (0.5 * ((250 - DELAY) / 10));
+		}
+		if ((bloque == true && pared == false) || (bloque == false && pared == true))
+		{
+			puntuacion = puntuacion + (1 * ((250 - DELAY) / 10));
+		}
+		if (bloque == true && pared == true)
+		{
+			puntuacion = puntuacion + (2 * ((250 - DELAY) / 10));
+		}
+		
+		System.out.println(puntuacion);
+		return puntuacion;
 	}
 	
 	public class Controles extends KeyAdapter{
