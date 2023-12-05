@@ -79,7 +79,7 @@ public class VentanaInicio {
 		contentPane.add(textoTitulo);
 
 		frame.pack();
-		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 	}
 }
