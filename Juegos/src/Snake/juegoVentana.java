@@ -1,12 +1,11 @@
 package Snake;
 
 import javax.swing.JFrame;
-<<<<<<< HEAD
+
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
-=======
->>>>>>> branch 'master' of https://github.com/Gontzaa86/ProyectoProgram3
+
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import java.awt.Font;
