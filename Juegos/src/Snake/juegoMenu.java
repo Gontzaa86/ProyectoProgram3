@@ -35,6 +35,7 @@ public class juegoMenu extends JFrame {
 	public juegoMenu() {
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
+		this.setResizable(false);
 		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 624, 432);
