@@ -23,7 +23,6 @@ public class juegoVentana extends JFrame {
 	juegoContenido juegocontenido;
 	
 	public juegoVentana(int velocidad, boolean bloque, boolean pared) {
-		
 		getContentPane().setBackground(new Color(0, 0, 0));
 		juegocontenido = new juegoContenido(velocidad,bloque,pared);
 		this.setTitle("Serpiente");
@@ -35,6 +34,8 @@ public class juegoVentana extends JFrame {
 		this.setLocationRelativeTo(null);
 		juegocontenido.setOpaque(false);
 		this.setVisible(true);
+		
+		juegocontenido.finish = true;
 		
 		JTextArea textPuntuacion = new JTextArea();
 		textPuntuacion.setForeground(new Color(255, 255, 255));
@@ -52,7 +53,7 @@ public class juegoVentana extends JFrame {
 		
 		Thread hilo = new Thread() {
 			public void run() {
-				while (true) {
+				while (juegocontenido.finish) {
 					try {
 						Thread.sleep(1);
 						textPuntuacion.setText(String.valueOf(juegocontenido.puntuacion));
@@ -68,7 +69,7 @@ public class juegoVentana extends JFrame {
 		Thread hilo2 = new Thread() {
 			int cronometro = 0;
 			public void run() {
-				while (true) {
+				while (juegocontenido.finish) {
 					try {
 						textCronometro.setText(String.valueOf(cronometro));
 						Thread.sleep(1000);

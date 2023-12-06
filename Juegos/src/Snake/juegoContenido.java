@@ -48,7 +48,8 @@ public class juegoContenido extends JPanel implements ActionListener {
 	Timer timer;
 	
 	//correr el juego
-	boolean running = true;
+	boolean running=true;
+	boolean finish;
 	
 	//Revisar pared
 	boolean pared;
@@ -123,7 +124,6 @@ public class juegoContenido extends JPanel implements ActionListener {
 			agregarComida();
 			agregarBloque(this.bloque);
 			this.puntuacion++;
-			System.out.println(this.puntuacion);
 		}
 	}
 
@@ -132,8 +132,8 @@ public class juegoContenido extends JPanel implements ActionListener {
 		if (pared==true) {
 			if(serpienteX[0]<0 || serpienteY[0]<0 || serpienteX[0]==PANTALLA || serpienteY[0]==PANTALLA) {
 				running=false;
+				this.finish=false;
 				JOptionPane.showMessageDialog(this, "chocado");
-				running = false;
 			}
 		}
 		
@@ -154,8 +154,9 @@ public class juegoContenido extends JPanel implements ActionListener {
 		//Serpiente
 		for(int i = cuerpo_serpiente; i > 0; i--) {
 			if (serpienteX[0]==serpienteX[i] && serpienteY[0]==serpienteY[i]) {
-				JOptionPane.showMessageDialog(this, "chocado");
 				running = false;
+				this.finish=false;
+				JOptionPane.showMessageDialog(this, "chocado");
 				break;
 			}	
 		}
@@ -163,15 +164,16 @@ public class juegoContenido extends JPanel implements ActionListener {
 		//Bloque
 		for(int i = 0; i < contBloque; i++) {
 			if (serpienteX[0]==bloqueX[i] && serpienteY[0]==bloqueY[i]) {
-				JOptionPane.showMessageDialog(this, "chocado");
 				running = false;
+				this.finish=false;
+				JOptionPane.showMessageDialog(this, "chocado");
 				break;
 			}	
 		}
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (running) {
+		if (this.running) {
 			moverSerpiente();
 			revisarComida();
 			revisarColisiones(pared);
