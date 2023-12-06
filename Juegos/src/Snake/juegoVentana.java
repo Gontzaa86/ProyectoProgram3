@@ -2,15 +2,11 @@ package Snake;
 
 import javax.swing.JFrame;
 
-import javax.swing.JPanel;
+
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
-import javax.swing.border.EmptyBorder;
+
 
 import javax.swing.JLabel;
-
-import java.awt.event.ActionEvent;
-
 import javax.swing.ImageIcon;
 import java.awt.Color;
 import java.awt.Font;
@@ -79,7 +75,6 @@ public class juegoVentana extends JFrame {
 						e.printStackTrace();
 					}
 				}
-				
 			}
 		};
 		hilo2.start();

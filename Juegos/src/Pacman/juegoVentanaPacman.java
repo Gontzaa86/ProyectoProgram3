@@ -1,5 +1,8 @@
 package Pacman;
 
+import java.awt.Color;
+import java.awt.Graphics;
+
 import javax.swing.JFrame;
 
 public class juegoVentanaPacman extends JFrame{
@@ -8,7 +11,7 @@ public class juegoVentanaPacman extends JFrame{
 	 */
 	private static final long serialVersionUID = 1L;
 
-public juegoVentanaPacman() {
+	public juegoVentanaPacman() {
 		
 		juegoContenidoPacman juegocontenido = new juegoContenidoPacman();
 		this.setTitle("Pac-man");
