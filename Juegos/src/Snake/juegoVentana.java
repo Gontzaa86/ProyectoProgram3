@@ -4,16 +4,14 @@ import javax.swing.JFrame;
 
 
 import javax.swing.JTextArea;
-<<<<<<< HEAD
 
 
-=======
+
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import BaseDeDatos.GestorBD;
 
->>>>>>> branch 'master' of https://github.com/Gontzaa86/ProyectoProgram3
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import java.awt.Color;
