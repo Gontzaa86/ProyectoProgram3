@@ -59,7 +59,7 @@ public class juegoMenu extends JFrame {
 		JLabel lblVelocidad = new JLabel("Velocidad");
 		lblVelocidad.setForeground(new Color(0, 0, 0));
 		lblVelocidad.setBackground(new Color(255, 255, 255));
-		lblVelocidad.setBounds(50, 97, 93, 13);
+		lblVelocidad.setBounds(50, 97, 83, 13);
 		lblVelocidad.setFont(new Font("Tahoma", Font.BOLD, 14));
 		contentPane.add(lblVelocidad);
 		
