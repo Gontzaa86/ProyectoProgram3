@@ -7,6 +7,8 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import BaseDeDatos.GestorBD;
+
 import javax.swing.JLabel;
 
 import java.awt.event.ActionEvent;
@@ -16,9 +18,7 @@ import java.awt.Color;
 import java.awt.Font;
 
 public class juegoVentana extends JFrame {
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 	juegoContenido juegocontenido;
 	
@@ -83,6 +83,7 @@ public class juegoVentana extends JFrame {
 			}
 		};
 		hilo2.start();
+		
 		
 		JLabel lblPuntuacion = new JLabel("Puntuación");
 		lblPuntuacion.setForeground(new Color(255, 255, 255));

@@ -204,8 +204,6 @@ public class juegoContenido extends JPanel implements ActionListener {
 			g.fillRect(bloqueX[i], bloqueY[i], CUADRITO_SIZE, CUADRITO_SIZE);
 		}
 	}
-
-	//Calcula la puntuacion segun la velocidad escogida y si hay bloques y/o pared.
 	
 	
 	public class Controles extends KeyAdapter{
