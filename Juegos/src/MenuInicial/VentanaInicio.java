@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 
+import BaseDeDatos.GestorBD;
 import Pacman.InicioPacman;
 import Snake.InicioSnake;
 
@@ -81,5 +82,12 @@ public class VentanaInicio {
 		frame.pack();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
+		
+/*		Pruebas BD
+ * 		Este código sirve para añadir datos a la base de datos
+ * 		Falta implementar el código en el Snake, de forma que los meta al terminar la partida***/
+ 		GestorBD datosSnake = new GestorBD();
+ 		datosSnake.introducirDatosSnake("gilipollas", 90, 10, 100, "true", "false");
+ 	
 	}
 }

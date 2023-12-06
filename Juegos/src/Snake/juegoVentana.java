@@ -4,17 +4,23 @@ import javax.swing.JFrame;
 
 
 import javax.swing.JTextArea;
+<<<<<<< HEAD
 
 
+=======
+import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
+
+import BaseDeDatos.GestorBD;
+
+>>>>>>> branch 'master' of https://github.com/Gontzaa86/ProyectoProgram3
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import java.awt.Color;
 import java.awt.Font;
 
 public class juegoVentana extends JFrame {
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 	juegoContenido juegocontenido;
 	
@@ -78,6 +84,7 @@ public class juegoVentana extends JFrame {
 			}
 		};
 		hilo2.start();
+		
 		
 		JLabel lblPuntuacion = new JLabel("Puntuación");
 		lblPuntuacion.setForeground(new Color(255, 255, 255));
