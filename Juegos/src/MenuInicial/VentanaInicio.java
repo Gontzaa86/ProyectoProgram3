@@ -85,9 +85,9 @@ public class VentanaInicio {
 		
 /*		Pruebas BD
  * 		Este código sirve para añadir datos a la base de datos
- * 		Falta implementar el código en el Snake, de forma que los meta al terminar la partida***/
- 		GestorBD datosSnake = new GestorBD();
- 		datosSnake.introducirDatosSnake("gilipollas", 90, 10, 100, "true", "false");
- 	
+ * 		Falta implementar el código en el Snake, de forma que los meta al terminar la partida
+ *		GestorBD datosSnake = new GestorBD();
+ *		datosSnake.introducirDatosSnake("gilipollas", 90, 10, 100, "true", "false");
+ */	
 	}
 }

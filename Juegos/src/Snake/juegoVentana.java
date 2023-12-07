@@ -21,10 +21,11 @@ public class juegoVentana extends JFrame {
 	
 	private static final long serialVersionUID = 1L;
 	juegoContenido juegocontenido;
+	int tiempo;
 	
 	public juegoVentana(int velocidad, boolean bloque, boolean pared) {
 		getContentPane().setBackground(new Color(0, 0, 0));
-		juegocontenido = new juegoContenido(velocidad,bloque,pared);
+		juegocontenido = new juegoContenido(velocidad, bloque, pared);
 		this.setTitle("Serpiente");
 		getContentPane().add(juegocontenido);
 		//juegocontenido.setLayout(null);
@@ -104,4 +105,5 @@ public class juegoVentana extends JFrame {
 		getContentPane().add(lblHierba);
 		//juegocontenido.add(lblHierba); Para modificar tamaño	
 	}
+
 }

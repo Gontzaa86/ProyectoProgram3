@@ -8,9 +8,13 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.Random;
+import java.util.concurrent.atomic.AtomicInteger;
+
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
+
+import BaseDeDatos.GestorBD;
 
 public class juegoContenido extends JPanel implements ActionListener {
 	/**
@@ -48,7 +52,7 @@ public class juegoContenido extends JPanel implements ActionListener {
 	Timer timer;
 	
 	//correr el juego
-	boolean running=true;
+	boolean running = true;
 	boolean finish;
 	
 	//Revisar pared
@@ -59,6 +63,9 @@ public class juegoContenido extends JPanel implements ActionListener {
 	
 	//Puntos
 	int puntuacion;
+	
+	//Nombre usuario
+	String nombre;
 	
 	public juegoContenido(int velocidad, boolean bloque, boolean pared){
 		
@@ -133,7 +140,13 @@ public class juegoContenido extends JPanel implements ActionListener {
 			if(serpienteX[0]<0 || serpienteY[0]<0 || serpienteX[0]==PANTALLA || serpienteY[0]==PANTALLA) {
 				running=false;
 				this.finish=false;
-				JOptionPane.showMessageDialog(this, "chocado");
+				JOptionPane.showMessageDialog(this, "Has chochado");
+				
+				//Nombre de usuario
+				nombre = JOptionPane.showInputDialog("Introduzca su usuario, si no lo hace, o lo cancela, la partida no quedará registrada");
+				System.out.println(nombre);
+				
+				guardarDatosBaseDatos();
 			}
 		}
 		
@@ -156,7 +169,14 @@ public class juegoContenido extends JPanel implements ActionListener {
 			if (serpienteX[0]==serpienteX[i] && serpienteY[0]==serpienteY[i]) {
 				running = false;
 				this.finish=false;
-				JOptionPane.showMessageDialog(this, "chocado");
+				JOptionPane.showMessageDialog(this, "Has chochado");
+				
+				//Nombre de usuario
+				nombre = JOptionPane.showInputDialog("Introduzca su usuario, si no lo hace, o lo cancela, la partida no quedará registrada");
+				System.out.println(nombre);
+				
+				guardarDatosBaseDatos();
+				
 				break;
 			}	
 		}
@@ -166,7 +186,14 @@ public class juegoContenido extends JPanel implements ActionListener {
 			if (serpienteX[0]==bloqueX[i] && serpienteY[0]==bloqueY[i]) {
 				running = false;
 				this.finish=false;
-				JOptionPane.showMessageDialog(this, "chocado");
+				JOptionPane.showMessageDialog(this, "Has chochado");
+				
+				//Nombre de usuario
+				nombre = JOptionPane.showInputDialog("Introduzca su usuario, si no lo hace, o lo cancela, la partida no quedará registrada");
+				System.out.println(nombre);
+				
+				guardarDatosBaseDatos();
+				
 				break;
 			}	
 		}
@@ -205,7 +232,35 @@ public class juegoContenido extends JPanel implements ActionListener {
 		}
 	}
 	
-	
+	public void guardarDatosBaseDatos()
+	{
+		GestorBD datosSnake = new GestorBD();
+		
+		String bloqueTexto;
+		String paredTexto;
+		
+		
+		if(bloque == true)
+		{
+			bloqueTexto = "True";
+		}
+		else
+		{
+			bloqueTexto = "False";
+		}
+		
+		if(pared == true)
+		{
+			paredTexto = "True";
+		}
+		else
+		{
+			paredTexto = "False";
+		}
+		
+		datosSnake.introducirDatosSnake(nombre, puntuacion, 0 /* Falta hacer */, (250 - DELAY), paredTexto, bloqueTexto);
+	}
+
 	public class Controles extends KeyAdapter{
 		@Override
 		public void keyPressed (KeyEvent e) {
