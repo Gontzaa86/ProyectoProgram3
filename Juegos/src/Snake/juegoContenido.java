@@ -146,7 +146,14 @@ public class juegoContenido extends JPanel implements ActionListener {
 				nombre = JOptionPane.showInputDialog("Introduzca su usuario, si no lo hace, o lo cancela, la partida no quedará registrada");
 				System.out.println(nombre);
 				
-				guardarDatosBaseDatos();
+				if (nombre.isEmpty() == false)
+				{
+					guardarDatosBaseDatos();
+				}
+				else
+				{
+					JOptionPane.showMessageDialog(this, "No se introdujo ningún nombre, por tanto, los datos no se guardarán");
+				}
 			}
 		}
 		
@@ -175,7 +182,14 @@ public class juegoContenido extends JPanel implements ActionListener {
 				nombre = JOptionPane.showInputDialog("Introduzca su usuario, si no lo hace, o lo cancela, la partida no quedará registrada");
 				System.out.println(nombre);
 				
-				guardarDatosBaseDatos();
+				if (nombre.isEmpty() == false)
+				{
+					guardarDatosBaseDatos();
+				}
+				else
+				{
+					JOptionPane.showMessageDialog(this, "No se introdujo ningún nombre, por tanto, los datos no se guardarán");
+				}
 				
 				break;
 			}	
@@ -192,7 +206,14 @@ public class juegoContenido extends JPanel implements ActionListener {
 				nombre = JOptionPane.showInputDialog("Introduzca su usuario, si no lo hace, o lo cancela, la partida no quedará registrada");
 				System.out.println(nombre);
 				
-				guardarDatosBaseDatos();
+				if (nombre.isEmpty() == false)
+				{
+					guardarDatosBaseDatos();
+				}
+				else
+				{
+					JOptionPane.showMessageDialog(this, "No se introdujo ningún nombre, por tanto, los datos no se guardarán");
+				}
 				
 				break;
 			}	
