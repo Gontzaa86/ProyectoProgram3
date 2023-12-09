@@ -36,7 +36,14 @@ public class MenuTablaSnake extends JFrame
 	//Establecer como modelo los datos de la BD
 	private DefaultTableModel obtenerModeloTabla()
 	{
-		DefaultTableModel modelo = new DefaultTableModel();
+		DefaultTableModel modelo = new DefaultTableModel()
+		{
+			public boolean isCellEditable(int row, int column)
+			{
+				return false;
+			}
+		};
+		
 		modelo.addColumn("Usuario");
 		modelo.addColumn("Puntuación");
 		modelo.addColumn("Tiempo");
