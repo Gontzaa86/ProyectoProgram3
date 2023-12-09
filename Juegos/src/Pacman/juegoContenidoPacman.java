@@ -14,18 +14,17 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 
 public class juegoContenidoPacman extends JPanel implements ActionListener{
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
+	
 	//pantalla
 	static final int PANTALLA = 510;
 	static final int CUADRITO_SIZE = 20;
 	static final int CUADRITOS_PARALELO = (int)PANTALLA/CUADRITO_SIZE;
 	
 	//pacman
-	int pacmanX;
-	int pacmanY;
+	int pacmanX = 0;
+	int pacmanY = 0;
 	
 	//fantasma
 	static final int TOTAL_FANTASMA = (PANTALLA*PANTALLA)/CUADRITO_SIZE;
@@ -34,13 +33,17 @@ public class juegoContenidoPacman extends JPanel implements ActionListener{
 	
 	//punto
 	static final int TOTAL_PUNTO = (PANTALLA*PANTALLA)/CUADRITO_SIZE;
-	//int[] puntoX = new int [TOTAL_PUNTO];
-	//int[] puntoY = new int[TOTAL_PUNTO];
-	ArrayList<Integer> puntoX = new ArrayList<Integer>();
-	ArrayList<Integer> puntoY = new ArrayList<Integer>();
+	int[] puntoX = new int [TOTAL_PUNTO];
+	int[] puntoY = new int[TOTAL_PUNTO];
+	//ArrayList<Integer> puntoX = new ArrayList<Integer>();
+	//ArrayList<Integer> puntoY = new ArrayList<Integer>();
 	int inicialX = 8;
 	int inicialY = 8;
 	int contPunto= 0;
+	
+	//Eliminar puntos
+	ArrayList<Integer>puntoNegroX = new ArrayList<Integer>();
+	ArrayList<Integer>puntoNegroY = new ArrayList<Integer>();
 	
 	//bloque
 	static final int TOTAL_BLOQUE = (PANTALLA*PANTALLA)/CUADRITO_SIZE;
@@ -97,18 +100,29 @@ public class juegoContenidoPacman extends JPanel implements ActionListener{
 	public void agregarPunto() {
 		while (contPunto < 169) {
 
-			puntoX.add(inicialX);
-			puntoY.add(inicialY);			
+			puntoX[contPunto] = inicialX;
+			puntoY[contPunto] = inicialY;
 						
 			if (inicialX<500) {
 				inicialX = inicialX + 40;
 			}
+			
 			if (inicialX > 500) {
 				inicialY = inicialY + 40;
-				inicialX = 10;
+				inicialX = 8;
 			}
-			System.out.println(puntoX.get(contPunto)+" "+puntoY.get(contPunto));
+			
+			System.out.println(puntoX[contPunto]+" "+puntoY[contPunto]);
 			contPunto++;
+		}
+	}
+	
+	public void revisarPunto() {
+		for (int i=0; i<contPunto; i++) {
+			if (pacmanX == puntoX[i]-8 && pacmanY == puntoY[i]-8) {
+				puntoNegroX.add(puntoX[i]);
+				puntoNegroY.add(puntoY[i]);
+			}				
 		}
 	}
 	
@@ -116,7 +130,7 @@ public class juegoContenidoPacman extends JPanel implements ActionListener{
 		//bloquear pared X menos el hueco
 		if (pacmanX>PANTALLA && pacmanY==260) {
 			pacmanX=0;
-		}else if (pacmanX>(PANTALLA-20) && pacmanY!=260) {
+		}else if (pacmanX>(PANTALLA) && pacmanY!=260) {
 			pacmanX=pacmanX-20;
 		}else if (pacmanX<0 && pacmanY!=260) {
 			pacmanX=pacmanX+20;
@@ -124,8 +138,8 @@ public class juegoContenidoPacman extends JPanel implements ActionListener{
 		
 		//bloquear pared Y menos el hueco
 		if (pacmanX<0 && pacmanY==260) {
-			pacmanX=PANTALLA;
-		}else if (pacmanY>(PANTALLA-20)) {
+			pacmanX=PANTALLA-10;
+		}else if (pacmanY>(PANTALLA)) {
 			pacmanY=pacmanY-20;
 		}else if (pacmanY<0) {
 			pacmanY=pacmanY+20;
@@ -136,7 +150,9 @@ public class juegoContenidoPacman extends JPanel implements ActionListener{
 		if (running) {
 			moverPacman();
 			revisarColisiones();
+			revisarPunto();
 		}
+		System.out.println(pacmanX+"-"+pacmanY);
 		repaint();//Para dibujar constantemente
 	}
 	
@@ -144,34 +160,32 @@ public class juegoContenidoPacman extends JPanel implements ActionListener{
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		
-		//borde del mapa
-		g.setColor(Color.magenta);
-		g.drawLine(0, 1, PANTALLA, 1);
-		g.drawLine(0, 509, PANTALLA, 509);
-		g.drawLine(1, 0, 1, 250);
-		g.drawLine(1, 290, 1, 510);
-		g.drawLine(509, 0, 509, 250);
-		g.drawLine(509, 290, 509, 510);
-		
 		//puntos blancos
 		g.setColor(Color.white);
 		for (int i=0; i<contPunto; i++) {
 			if (i == 0 || i==12 || i==156 || i == 168) {
-				g.fillOval(puntoX.get(i), puntoY.get(i), CUADRITO_SIZE, CUADRITO_SIZE);
+				g.fillOval(puntoX[i], puntoY[i], CUADRITO_SIZE, CUADRITO_SIZE);
 			}else {
-				g.fillOval(puntoX.get(i), puntoY.get(i), 5, 5); //posicion x,y tamaño x,y
+				g.fillOval(puntoX[i], puntoY[i], 8, 8); //posicion x,y tamaño x,y
 			}
 		}
 		
-		//Eliminar puntos
+		g.setColor(Color.black);
+		for (int i=0; i<puntoNegroX.size(); i++) {
+			if (i == 0 || i==12 || i==156 || i == 168) {
+				g.fillOval(puntoNegroX.get(i)-8, puntoNegroY.get(i)-8, CUADRITO_SIZE+10, CUADRITO_SIZE+10);
+			}else {
+				g.fillOval(puntoNegroX.get(i)-8, puntoNegroY.get(i)-8,  CUADRITO_SIZE+10, CUADRITO_SIZE+10); //posicion x,y tamaño x,y
+			}
+		}
+		
+		//Puntos negros
 		/**g.setColor(Color.black);
-		for (int i=0; i<contPunto; i++) {
-			if (pacmanX > puntoX.get(i)-8 && pacmanY > 20) {
-				if (i == 0 || i==12 || i==156 || i == 168) {
-					g.fillOval(puntoX.get(i), puntoY.get(i), CUADRITO_SIZE, CUADRITO_SIZE);
-				}else  {
-					g.fillOval(puntoX.get(i), puntoY.get(i), 5, 5); //posicion x,y tamaño x,y
-				}
+		for (int i=0; i<puntoNegroX.size(); i++) {
+			if (i == 0 || i==12 || i==156 || i == 168) {
+				g.fillOval(puntoNegroX.get(i), puntoNegroY.get(i), CUADRITO_SIZE, CUADRITO_SIZE);
+			}else  {
+				g.fillOval(puntoNegroX.get(i), puntoNegroY.get(i), 5, 5); //posicion x,y tamaño x,y
 			}
 		}**/
 		
@@ -195,6 +209,15 @@ public class juegoContenidoPacman extends JPanel implements ActionListener{
 			g.fillArc(pacmanX, pacmanY, CUADRITO_SIZE, CUADRITO_SIZE, 0, 360);
 		}
 		contador+=1; //Para que sea impar y cambie de color	
+		
+		//borde del mapa
+		g.setColor(Color.magenta);
+		g.drawLine(0, 1, PANTALLA, 1);
+		g.drawLine(0, 509, PANTALLA, 509);
+		g.drawLine(1, 0, 1, 250);
+		g.drawLine(1, 290, 1, 510);
+		g.drawLine(509, 0, 509, 250);
+		g.drawLine(509, 290, 509, 510);
 					
 	}
 	
