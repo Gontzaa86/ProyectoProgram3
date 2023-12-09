@@ -67,6 +67,9 @@ public class juegoContenido extends JPanel implements ActionListener {
 	//Nombre usuario
 	String nombre;
 	
+	//Tiempo final de la partida
+	int tiempo;
+	
 	public juegoContenido(int velocidad, boolean bloque, boolean pared){
 		
 		this.setPreferredSize(new Dimension(700,PANTALLA)); //tammax y tammin
@@ -253,6 +256,30 @@ public class juegoContenido extends JPanel implements ActionListener {
 		}
 	}
 	
+	public void sumarTiempo()
+	{
+		Thread hiloTiempo = new Thread()
+		{
+			public void run()
+			{
+				while(finish)
+				{
+					try
+					{
+						Thread.sleep(1000);
+						tiempo++;
+						System.out.println(tiempo);
+					}
+					catch (InterruptedException e)
+					{
+						e.printStackTrace();
+					}
+				}
+			}
+		};
+		hiloTiempo.start();
+	}
+	
 	public void guardarDatosBaseDatos()
 	{
 		GestorBD datosSnake = new GestorBD();
@@ -279,7 +306,7 @@ public class juegoContenido extends JPanel implements ActionListener {
 			paredTexto = "False";
 		}
 		
-		datosSnake.introducirDatosSnake(nombre, puntuacion, 0 /* Falta hacer */, (250 - DELAY), paredTexto, bloqueTexto);
+		datosSnake.introducirDatosSnake(nombre, puntuacion, tiempo, (250 - DELAY), paredTexto, bloqueTexto);
 	}
 
 	public class Controles extends KeyAdapter{
