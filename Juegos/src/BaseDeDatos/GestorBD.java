@@ -4,7 +4,8 @@ import java.sql.*;
 
 public class GestorBD 
 {
-	//Código para imnplementar datos en el snake (SOLO SNAKE)
+	//Código para imnplementar datos en el snake (SOLO SNAKE) 
+	//De la aplicación a la BD
 	public static void introducirDatosSnake(String nombre, int puntos, int tiempo, int velocidad, String bloque, String pared)
 	{
 		Connection conexion = null;
