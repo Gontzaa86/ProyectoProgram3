@@ -7,6 +7,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/antonio.cancio/OneDrive - Universidad de Deusto/Escritorio/ProgramacionGitHub/Juegos/sqlite-jdbc-3.43.0.0.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/BaseDatos"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
