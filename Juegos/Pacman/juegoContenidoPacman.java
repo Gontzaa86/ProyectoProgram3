@@ -14,6 +14,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+import BaseDeDatos.GestorBD;
+
 public class juegoContenidoPacman extends JPanel implements ActionListener{
 	
 	private static final long serialVersionUID = 1L;
@@ -77,6 +79,12 @@ public class juegoContenidoPacman extends JPanel implements ActionListener{
 	//correr juego
 	boolean running = true;
 	boolean finish;
+	
+	//Nombre usuario
+	String nombre;
+	
+	//Tiempo fianl
+	int tiempo = 0;
 	
 	Random random = new Random();
 	
@@ -211,6 +219,19 @@ public class juegoContenidoPacman extends JPanel implements ActionListener{
 			running=false;
 			finish=false;
 			JOptionPane.showMessageDialog(null, "Has terminado");
+			
+			//Nombre de usuario
+			nombre = JOptionPane.showInputDialog("Introduzca su usuario, si no lo hace, o lo cancela, la partida no quedará registrada");
+			System.out.println(nombre);
+			
+			if (nombre.isEmpty() == false)
+			{
+				guardarDatosBaseDatos();
+			}
+			else
+			{
+				JOptionPane.showMessageDialog(this, "No se introdujo ningún nombre, por tanto, los datos no se guardarán");
+			}
 		}
 	}
 	
@@ -240,6 +261,19 @@ public class juegoContenidoPacman extends JPanel implements ActionListener{
 			running=false;
 			finish=false;
 			JOptionPane.showMessageDialog(null, "Te ha comido el fantasma");
+			
+			//Nombre de usuario
+			nombre = JOptionPane.showInputDialog("Introduzca su usuario, si no lo hace, o lo cancela, la partida no quedará registrada");
+			System.out.println(nombre);
+			
+			if (nombre.isEmpty() == false)
+			{
+				guardarDatosBaseDatos();
+			}
+			else
+			{
+				JOptionPane.showMessageDialog(this, "No se introdujo ningún nombre, por tanto, los datos no se guardarán");
+			}
 		}
 		
 		//Bloquear fantasma
@@ -367,6 +401,37 @@ public class juegoContenidoPacman extends JPanel implements ActionListener{
 		g.drawLine(509, 0, 509, 250);
 		g.drawLine(509, 290, 509, 510);
 					
+	}
+	
+	public void guardarDatosBaseDatos()
+	{
+		GestorBD datosSnake = new GestorBD();
+		
+		datosSnake.introducirDatosPacMan(nombre, puntuacion, tiempo, (250 - DELAY));
+	}
+	
+	public void sumarTiempo()
+	{
+		Thread hiloTiempo = new Thread()
+		{
+			public void run()
+			{
+				while(finish)
+				{
+					try
+					{
+						Thread.sleep(1000);
+						tiempo++;
+						System.out.println(tiempo);
+					}
+					catch (InterruptedException e)
+					{
+						e.printStackTrace();
+					}
+				}
+			}
+		};
+		hiloTiempo.start();
 	}
 	
 	public class Controles extends KeyAdapter{

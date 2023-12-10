@@ -76,6 +76,8 @@ public class juegoVentanaPacman extends JFrame{
 		};
 		hilo2.start();
 		
+		juegocontenido.sumarTiempo();
+		
 		JLabel lblPuntuacion = new JLabel("Puntuación");
 		lblPuntuacion.setForeground(new Color(255, 255, 255));
 		lblPuntuacion.setBackground(new Color(0, 0, 0));
