@@ -20,6 +20,8 @@ import javax.swing.JSlider;
 import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 
+import Snake.MenuTablaSnake;
+
 public class juegoMenuPacman extends JFrame {
 
 	/**
@@ -123,6 +125,32 @@ public class juegoMenuPacman extends JFrame {
 		});
 		btnAceptar.setBounds(50, 405, 134, 29);
 		contentPane.add(btnAceptar);
+		
+		JButton btnTabla = new JButton("Puntuaciones");
+		btnTabla.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				new MenuTablaPacMan();
+			}
+		});
+		btnTabla.setBounds(476, 284, 134, 29);
+		btnTabla.setForeground(new Color (255, 255, 255));
+		btnTabla.setBackground(new Color(0, 0, 0));
+		btnTabla.setOpaque(false);
+		btnTabla.addMouseListener(new MouseAdapter() 
+		{
+			@Override
+			public void mouseEntered(MouseEvent e) 
+			{
+				btnTabla.setOpaque(true);
+			}
+			public void mouseExited(MouseEvent e) 
+			{
+				btnTabla.setOpaque(false);
+			}
+		});
+		contentPane.add(btnTabla);
 		
 		JLabel lblFondo = new JLabel("New label");
 		lblFondo.setBounds(0, 0, 650, 444);
