@@ -8,7 +8,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.Random;
-import java.util.concurrent.atomic.AtomicInteger;
 
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;

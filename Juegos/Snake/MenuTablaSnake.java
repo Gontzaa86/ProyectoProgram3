@@ -42,6 +42,8 @@ public class MenuTablaSnake extends JFrame
 	{
 		DefaultTableModel modelo = new DefaultTableModel()
 		{
+			private static final long serialVersionUID = 1L;
+
 			public boolean isCellEditable(int row, int column)
 			{
 				return false;

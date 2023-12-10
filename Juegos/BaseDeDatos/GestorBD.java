@@ -6,7 +6,7 @@ public class GestorBD
 {
 	//Código para imnplementar datos en el snake (SOLO SNAKE) 
 	//De la aplicación a la BD
-	public static void introducirDatosSnake(String nombre, int puntos, int tiempo, int velocidad, String bloque, String pared)
+	public void introducirDatosSnake(String nombre, int puntos, int tiempo, int velocidad, String bloque, String pared)
 	{
 		Connection conexion = null;
 		try
@@ -34,7 +34,7 @@ public class GestorBD
 	
 	//Código para implementar datos en el PacMan (SOLO PACMAN)
 	//De la aplicación a la BD
-	public static void introducirDatosPacMan(String nombre, int puntos, int tiempo, int velocidad)
+	public void introducirDatosPacMan(String nombre, int puntos, int tiempo, int velocidad)
 	{
 		Connection conexion = null;
 		try

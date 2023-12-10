@@ -1,6 +1,5 @@
 package MenuInicial;
 
-import BaseDeDatos.GestorBD;
 import Pacman.juegoMenuPacman;
 import Snake.juegoMenu;
 
