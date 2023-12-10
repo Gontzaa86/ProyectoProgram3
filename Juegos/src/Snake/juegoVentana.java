@@ -28,7 +28,7 @@ public class juegoVentana extends JFrame {
 		juegocontenido = new juegoContenido(velocidad, bloque, pared);
 		this.setTitle("Serpiente");
 		getContentPane().add(juegocontenido);
-		//juegocontenido.setLayout(null);
+		juegocontenido.setLayout(null);
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		this.setResizable(false); //No poder aumentar
 		this.pack();

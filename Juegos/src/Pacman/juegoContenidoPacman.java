@@ -10,6 +10,7 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Random;
 
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -26,17 +27,26 @@ public class juegoContenidoPacman extends JPanel implements ActionListener{
 	int pacmanX = 0;
 	int pacmanY = 0;
 	
-	//fantasma
-	static final int TOTAL_FANTASMA = (PANTALLA*PANTALLA)/CUADRITO_SIZE;
-	int[] fantasmaX = new int [TOTAL_FANTASMA];
-	int[] fantasmaY = new int [TOTAL_FANTASMA];
+	//fantasma verde
+	int fantasmaVerdeX = 100;
+	int fantasmaVerdeY = 100;
+	
+	//fantasma rojo
+	int fantasmaRojoX = 300;
+	int fantasmaRojoY = 300;
+	
+	//fantasma rosa
+	int fantasmaRosaX = 100;
+	int fantasmaRosaY = 300;
+	
+	//fantasma naranja
+	int fantasmaNaranjaX = 300;
+	int fantasmaNaranjaY = 100;
 	
 	//punto
 	static final int TOTAL_PUNTO = (PANTALLA*PANTALLA)/CUADRITO_SIZE;
 	int[] puntoX = new int [TOTAL_PUNTO];
 	int[] puntoY = new int[TOTAL_PUNTO];
-	//ArrayList<Integer> puntoX = new ArrayList<Integer>();
-	//ArrayList<Integer> puntoY = new ArrayList<Integer>();
 	int inicialX = 8;
 	int inicialY = 8;
 	int contPunto= 0;
@@ -55,11 +65,14 @@ public class juegoContenidoPacman extends JPanel implements ActionListener{
 	char direccion_siguiente = 'd';
 	
 	//timer
-	int DELAY=200;
+	int DELAY;
 	Timer timer;
 	
 	//contador para cambiar a boca cerrada
 	int contador = 2;
+	
+	//puntuacion
+	int puntuacion;
 	
 	//correr juego
 	boolean running = true;
@@ -67,15 +80,16 @@ public class juegoContenidoPacman extends JPanel implements ActionListener{
 	
 	Random random = new Random();
 	
-	public juegoContenidoPacman() {
+	public juegoContenidoPacman(int velocidad) {
 		
-		this.setPreferredSize(new Dimension(PANTALLA,PANTALLA));
+		this.setPreferredSize(new Dimension(700,PANTALLA));
 		this.setBackground(Color.black);
 		this.setFocusable(true);
 		this.addKeyListener(new Controles());
-		setLayout(null);
 		agregarPunto();
+		this.DELAY = 250-velocidad;
 		timer = new Timer(DELAY, this);
+		setLayout(null);
 		timer.start();
 	}
 	
@@ -97,6 +111,73 @@ public class juegoContenidoPacman extends JPanel implements ActionListener{
 		}
 	}
 	
+	public void moverFantasmas() {
+		int numVerde = (int) (Math.random()*4);
+		switch(numVerde){
+		case 0:
+			fantasmaVerdeX += CUADRITO_SIZE;
+			break;
+		case 1:
+			fantasmaVerdeX -= CUADRITO_SIZE;
+			break;
+		case 2:
+			fantasmaVerdeY -= CUADRITO_SIZE;
+			break;
+		case 3:
+			fantasmaVerdeY += CUADRITO_SIZE;
+			break;
+		}
+		
+		int numRojo = (int) (Math.random()*4);
+		switch(numRojo){
+		case 0:
+			fantasmaRojoX += CUADRITO_SIZE;
+			break;
+		case 1:
+			fantasmaRojoX -= CUADRITO_SIZE;
+			break;
+		case 2:
+			fantasmaRojoY -= CUADRITO_SIZE;
+			break;
+		case 3:
+			fantasmaRojoY += CUADRITO_SIZE;
+			break;
+		}
+		
+		int numRosa = (int) (Math.random()*4);
+		switch(numRosa){
+		case 0:
+			fantasmaRosaX += CUADRITO_SIZE;
+			break;
+		case 1:
+			fantasmaRosaX -= CUADRITO_SIZE;
+			break;
+		case 2:
+			fantasmaRosaY -= CUADRITO_SIZE;
+			break;
+		case 3:
+			fantasmaRosaY += CUADRITO_SIZE;
+			break;
+		}
+		
+		int numNaranja = (int) (Math.random()*4);
+		switch(numNaranja){
+		case 0:
+			fantasmaNaranjaX += CUADRITO_SIZE;
+			break;
+		case 1:
+			fantasmaNaranjaX -= CUADRITO_SIZE;
+			break;
+		case 2:
+			fantasmaNaranjaY -= CUADRITO_SIZE;
+			break;
+		case 3:
+			fantasmaNaranjaY += CUADRITO_SIZE;
+			break;
+		}
+		
+	}
+	
 	public void agregarPunto() {
 		while (contPunto < 169) {
 
@@ -111,8 +192,6 @@ public class juegoContenidoPacman extends JPanel implements ActionListener{
 				inicialY = inicialY + 40;
 				inicialX = 8;
 			}
-			
-			System.out.println(puntoX[contPunto]+" "+puntoY[contPunto]);
 			contPunto++;
 		}
 	}
@@ -122,7 +201,16 @@ public class juegoContenidoPacman extends JPanel implements ActionListener{
 			if (pacmanX == puntoX[i]-8 && pacmanY == puntoY[i]-8) {
 				puntoNegroX.add(puntoX[i]);
 				puntoNegroY.add(puntoY[i]);
-			}				
+				if (i == 0 || i==12 || i==156 || i == 168) {
+					puntuacion+=5;
+				}
+				puntuacion++;					
+			}
+		}
+		if(puntoNegroX.size()==169) {
+			running=false;
+			finish=false;
+			JOptionPane.showMessageDialog(null, "Has terminado");
 		}
 	}
 	
@@ -144,15 +232,69 @@ public class juegoContenidoPacman extends JPanel implements ActionListener{
 		}else if (pacmanY<0) {
 			pacmanY=pacmanY+20;
 		}
+		
+		if (pacmanX == fantasmaVerdeX && pacmanY == fantasmaVerdeY
+				|| pacmanX == fantasmaRojoX && pacmanY == fantasmaRojoY
+				|| pacmanX == fantasmaRosaX && pacmanY == fantasmaRosaY
+				|| pacmanX == fantasmaNaranjaX && pacmanY == fantasmaNaranjaY) {
+			running=false;
+			finish=false;
+			JOptionPane.showMessageDialog(null, "Te ha comido el fantasma");
+		}
+		
+		//Bloquear fantasma
+		if (fantasmaVerdeX>(PANTALLA)) {
+			fantasmaVerdeX-=40;
+		}else if (fantasmaVerdeX<0) {
+			fantasmaVerdeX+=40;
+		}
+		if (fantasmaVerdeY>(PANTALLA)) {
+			fantasmaVerdeY-=40;
+		}else if (fantasmaVerdeY<0) {
+			fantasmaVerdeX+=40;
+		}
+		
+		if (fantasmaRojoX>(PANTALLA)) {
+			fantasmaRojoX-=40;
+		}else if (fantasmaRojoX<0) {
+			fantasmaRojoX+=40;
+		}
+		if (fantasmaRojoY>(PANTALLA)) {
+			fantasmaRojoY-=40;
+		}else if (fantasmaRojoY<0) {
+			fantasmaRojoX+=40;
+		}
+		
+		if (fantasmaRosaX>(PANTALLA)) {
+			fantasmaRosaX-=40;
+		}else if (fantasmaRosaX<0) {
+			fantasmaRosaX+=40;
+		}
+		if (fantasmaRosaY>(PANTALLA)) {
+			fantasmaRosaY-=40;
+		}else if (fantasmaRosaY<0) {
+			fantasmaRosaX+=40;
+		}
+		
+		if (fantasmaNaranjaX>(PANTALLA)) {
+			fantasmaNaranjaX-=40;
+		}else if (fantasmaNaranjaX<0) {
+			fantasmaNaranjaX+=40;
+		}
+		if (fantasmaNaranjaY>(PANTALLA)) {
+			fantasmaNaranjaY-=40;
+		}else if (fantasmaNaranjaY<0) {
+			fantasmaNaranjaX+=40;
+		}
 	}
 	
 	public void actionPerformed(ActionEvent e) {
 		if (running) {
 			moverPacman();
+			moverFantasmas();
 			revisarColisiones();
 			revisarPunto();
 		}
-		System.out.println(pacmanX+"-"+pacmanY);
 		repaint();//Para dibujar constantemente
 	}
 	
@@ -179,16 +321,6 @@ public class juegoContenidoPacman extends JPanel implements ActionListener{
 			}
 		}
 		
-		//Puntos negros
-		/**g.setColor(Color.black);
-		for (int i=0; i<puntoNegroX.size(); i++) {
-			if (i == 0 || i==12 || i==156 || i == 168) {
-				g.fillOval(puntoNegroX.get(i), puntoNegroY.get(i), CUADRITO_SIZE, CUADRITO_SIZE);
-			}else  {
-				g.fillOval(puntoNegroX.get(i), puntoNegroY.get(i), 5, 5); //posicion x,y tamaño x,y
-			}
-		}**/
-		
 		//color pacman
 		g.setColor(Color.yellow);
 		if (contador%2==0) {
@@ -209,6 +341,22 @@ public class juegoContenidoPacman extends JPanel implements ActionListener{
 			g.fillArc(pacmanX, pacmanY, CUADRITO_SIZE, CUADRITO_SIZE, 0, 360);
 		}
 		contador+=1; //Para que sea impar y cambie de color	
+		
+		//Color fantasma verde
+		g.setColor(Color.green);
+		g.fillOval(fantasmaVerdeX, fantasmaVerdeY, CUADRITO_SIZE, CUADRITO_SIZE);
+		
+		//Color fantasma rojo
+		g.setColor(Color.red);
+		g.fillOval(fantasmaRojoX, fantasmaRojoY, CUADRITO_SIZE, CUADRITO_SIZE);
+		
+		//Color fantasma rosa
+		g.setColor(Color.pink);
+		g.fillOval(fantasmaRosaX, fantasmaRosaY, CUADRITO_SIZE, CUADRITO_SIZE);
+		
+		//Color fantasma naranja
+		g.setColor(Color.orange);
+		g.fillOval(fantasmaNaranjaX, fantasmaNaranjaY, CUADRITO_SIZE, CUADRITO_SIZE);
 		
 		//borde del mapa
 		g.setColor(Color.magenta);

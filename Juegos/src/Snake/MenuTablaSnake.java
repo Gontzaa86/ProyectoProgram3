@@ -14,6 +14,10 @@ import javax.swing.table.DefaultTableModel;
 
 public class MenuTablaSnake extends JFrame 
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JTable tablaDatos;
 	
 	public MenuTablaSnake()

@@ -50,7 +50,7 @@ public class juegoMenuPacman extends JFrame {
 		JLabel lblVelocidad = new JLabel("Velocidad");
 		lblVelocidad.setForeground(new Color(255, 255, 255));
 		lblVelocidad.setBackground(new Color(255, 255, 255));
-		lblVelocidad.setBounds(268, 95, 82, 13);
+		lblVelocidad.setBounds(327, 144, 82, 13);
 		lblVelocidad.setFont(new Font("Tahoma", Font.BOLD, 14));
 		contentPane.add(lblVelocidad);
 		
@@ -63,29 +63,17 @@ public class juegoMenuPacman extends JFrame {
 		slVelocidad.setSnapToTicks(true);
 		slVelocidad.setPaintTicks(true);
 		slVelocidad.setPaintLabels(true);
-		slVelocidad.setBounds(176, 119, 331, 44);
+		slVelocidad.setBounds(178, 187, 331, 44);
 		contentPane.add(slVelocidad);
 		
 		JTextArea textArea = new JTextArea();
 		textArea.setBounds(517, 123, 20, 15);
 		contentPane.add(textArea);
 		
-		JLabel lblBloques = new JLabel("Bloques");
-		lblBloques.setForeground(new Color(255, 255, 255));
-		lblBloques.setBounds(236, 209, 69, 23);
-		lblBloques.setFont(new Font("Tahoma", Font.BOLD, 14));
-		contentPane.add(lblBloques);
-		
 		JCheckBox chBloques = new JCheckBox("");
 		chBloques.setOpaque(false);
 		chBloques.setBounds(122, 180, 21, 24);
 		contentPane.add(chBloques);
-		
-		JLabel lblPared = new JLabel("Pared");
-		lblPared.setForeground(new Color(255, 255, 255));
-		lblPared.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblPared.setBounds(191, 278, 69, 23);
-		contentPane.add(lblPared);
 		
 		JCheckBox chPared = new JCheckBox("");
 		chPared.setOpaque(false);
@@ -116,8 +104,9 @@ public class juegoMenuPacman extends JFrame {
 		JButton btnAceptar = new JButton("Aceptar");
 		btnAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				juegoventanapacman = new juegoVentanaPacman();
+				String valor_velocidad= String.valueOf(slVelocidad.getValue());
+				textArea.setText(valor_velocidad);
+				juegoventanapacman = new juegoVentanaPacman(slVelocidad.getValue());
 			}
 		});
 		btnAceptar.setForeground(new Color(255, 255, 255));
