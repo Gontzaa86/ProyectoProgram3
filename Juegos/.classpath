@@ -7,6 +7,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/BaseDatos"/>
+	<classpathentry kind="lib" path="lib/sqlite-jdbc-3.43.0.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
