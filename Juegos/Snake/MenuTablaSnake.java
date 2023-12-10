@@ -59,7 +59,7 @@ public class MenuTablaSnake extends JFrame
 		try
 		{
 			conexion = DriverManager.getConnection("jdbc:sqlite:base_datos.db");
-			String consulta = "SELECT Nombre, Puntuación, Tiempo, Velocidad, Paredes, Bloques FROM TablaSnake";
+			String consulta = "SELECT Nombre, Puntuación, Tiempo, Velocidad, Paredes, Bloques FROM TablaSnake ORDER BY Puntuación DESC";
 			try
 			{
 				PreparedStatement stmt = conexion.prepareStatement(consulta);

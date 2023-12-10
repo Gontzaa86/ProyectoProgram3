@@ -54,7 +54,7 @@ public class MenuTablaPacMan extends JFrame
 		try
 		{
 			conexion = DriverManager.getConnection("jdbc:sqlite:base_datos.db");
-			String consulta = "SELECT Nombre, Puntuación, Tiempo, Velocidad FROM TablaPacMan";
+			String consulta = "SELECT Nombre, Puntuación, Tiempo, Velocidad FROM TablaPacMan ORDER BY Puntuación DESC";
 			try
 			{
 				PreparedStatement stmt = conexion.prepareStatement(consulta);
