@@ -31,13 +31,10 @@ public class GestorBD
 			e.printStackTrace();
 		}
 	}
-<<<<<<< HEAD
-=======
-	
+
 	//Código para implementar datos en el PacMan (SOLO PACMAN)
 	//De la aplicación a la BD
-	public static void introducirDatosPacMan(String nombre, int puntos, int tiempo, int velocidad)
-	{
+	public static void introducirDatosPacMan(String nombre, int puntos, int tiempo, int velocidad){
 		Connection conexion = null;
 		try
 		{
@@ -58,5 +55,4 @@ public class GestorBD
 			e.printStackTrace();
 		}
 	}
->>>>>>> branch 'master' of https://github.com/Gontzaa86/ProyectoProgram3
 }

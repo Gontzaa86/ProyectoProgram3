@@ -20,113 +20,6 @@ import javax.swing.JSlider;
 import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 
-<<<<<<< HEAD
-public class juegoMenuPacman extends JFrame {
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	private JPanel contentPane;
-	Icon icon;
-	juegoVentanaPacman juegoventanapacman;
-
-	public juegoMenuPacman() {
-		this.setLocationRelativeTo(null);
-		this.setVisible(true);
-		
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 664, 481);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
-		
-		JLabel lblOpciones = new JLabel("Opciones");
-		lblOpciones.setForeground(new Color(255, 255, 255));
-		lblOpciones.setBounds(241, 410, 109, 24);
-		lblOpciones.setFont(new Font("Tahoma", Font.BOLD, 20));
-		contentPane.add(lblOpciones);
-		
-		JLabel lblVelocidad = new JLabel("Velocidad");
-		lblVelocidad.setForeground(new Color(255, 255, 255));
-		lblVelocidad.setBackground(new Color(255, 255, 255));
-		lblVelocidad.setBounds(327, 144, 82, 13);
-		lblVelocidad.setFont(new Font("Tahoma", Font.BOLD, 14));
-		contentPane.add(lblVelocidad);
-		
-		JSlider slVelocidad = new JSlider();
-		slVelocidad.setMajorTickSpacing(50);
-		slVelocidad.setMinorTickSpacing(10);
-		slVelocidad.setForeground(new Color(255, 255, 255));
-		slVelocidad.setMaximum(250);
-		slVelocidad.setOpaque(false);
-		slVelocidad.setSnapToTicks(true);
-		slVelocidad.setPaintTicks(true);
-		slVelocidad.setPaintLabels(true);
-		slVelocidad.setBounds(178, 187, 331, 44);
-		contentPane.add(slVelocidad);
-		
-		JTextArea textArea = new JTextArea();
-		textArea.setBounds(517, 123, 20, 15);
-		contentPane.add(textArea);
-		
-		JCheckBox chBloques = new JCheckBox("");
-		chBloques.setOpaque(false);
-		chBloques.setBounds(122, 180, 21, 24);
-		contentPane.add(chBloques);
-		
-		JCheckBox chPared = new JCheckBox("");
-		chPared.setOpaque(false);
-		chPared.setBounds(122, 228, 21, 24);
-		contentPane.add(chPared);
-		
-		JButton btnCancelar = new JButton("Cancelar");
-		btnCancelar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				dispose();
-			}
-		});
-		btnCancelar.setForeground(new Color(255, 255, 255));
-		btnCancelar.setBackground(new Color(0, 0, 255));
-		btnCancelar.setOpaque(false);
-		btnCancelar.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				btnCancelar.setOpaque(true);
-			}
-			public void mouseExited(MouseEvent e) {
-				btnCancelar.setOpaque(false);
-			}
-		});
-		btnCancelar.setBounds(476, 405, 134, 29);
-		contentPane.add(btnCancelar);
-		
-		JButton btnAceptar = new JButton("Aceptar");
-		btnAceptar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String valor_velocidad= String.valueOf(slVelocidad.getValue());
-				textArea.setText(valor_velocidad);
-				juegoventanapacman = new juegoVentanaPacman(slVelocidad.getValue());
-			}
-		});
-		btnAceptar.setForeground(new Color(255, 255, 255));
-		btnAceptar.setBackground(new Color(255, 255, 0));
-		btnAceptar.setOpaque(false);
-		btnAceptar.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				btnAceptar.setOpaque(true);
-			}
-			public void mouseExited(MouseEvent e) {
-				btnAceptar.setOpaque(false);
-			}
-		});
-		btnAceptar.setBounds(50, 405, 134, 29);
-		contentPane.add(btnAceptar);
-=======
-import Snake.MenuTablaSnake;
-
 public class juegoMenuPacman extends JFrame {
 
 	/**
@@ -256,7 +149,6 @@ public class juegoMenuPacman extends JFrame {
 			}
 		});
 		contentPane.add(btnTabla);
->>>>>>> branch 'master' of https://github.com/Gontzaa86/ProyectoProgram3
 		
 		JLabel lblFondo = new JLabel("New label");
 		lblFondo.setBounds(0, 0, 650, 444);
