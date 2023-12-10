@@ -76,6 +76,10 @@ public class juegoVentanaPacman extends JFrame{
 		};
 		hilo2.start();
 		
+<<<<<<< HEAD
+=======
+		juegocontenido.sumarTiempo();
+>>>>>>> branch 'master' of https://github.com/Gontzaa86/ProyectoProgram3
 		
 		JLabel lblPuntuacion = new JLabel("Puntuación");
 		lblPuntuacion.setForeground(new Color(255, 255, 255));

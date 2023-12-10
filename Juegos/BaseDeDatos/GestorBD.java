@@ -31,4 +31,32 @@ public class GestorBD
 			e.printStackTrace();
 		}
 	}
+<<<<<<< HEAD
+=======
+	
+	//Código para implementar datos en el PacMan (SOLO PACMAN)
+	//De la aplicación a la BD
+	public static void introducirDatosPacMan(String nombre, int puntos, int tiempo, int velocidad)
+	{
+		Connection conexion = null;
+		try
+		{
+			conexion = DriverManager.getConnection("jdbc:sqlite:base_datos.db");
+			String sentencia = "INSERT INTO TablaPacMan(Nombre, Puntuación, Tiempo, Velocidad) VALUES(?, ?, ?, ?)";
+			PreparedStatement stmt = conexion.prepareStatement(sentencia);
+			{
+				stmt.setString(1, nombre);
+				stmt.setInt(2, puntos);
+				stmt.setInt(3, tiempo);
+				stmt.setInt(4, velocidad);
+			}
+			
+			stmt.executeUpdate();
+		}
+		catch (SQLException e)
+		{
+			e.printStackTrace();
+		}
+	}
+>>>>>>> branch 'master' of https://github.com/Gontzaa86/ProyectoProgram3
 }

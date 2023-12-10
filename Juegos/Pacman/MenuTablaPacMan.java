@@ -1,4 +1,4 @@
-package Snake;
+package Pacman;
 
 import java.awt.BorderLayout;
 import java.sql.Connection;
@@ -12,15 +12,12 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-public class MenuTablaSnake extends JFrame 
+public class MenuTablaPacMan extends JFrame
 {
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private JTable tablaDatos;
 	
-	public MenuTablaSnake()
+	public MenuTablaPacMan()
 	{
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	    setSize(600, 400);
@@ -52,18 +49,12 @@ public class MenuTablaSnake extends JFrame
 		modelo.addColumn("Puntuación");
 		modelo.addColumn("Tiempo");
 		modelo.addColumn("Velocidad");
-		modelo.addColumn("Bloques");
-		modelo.addColumn("Paredes");
 		
 		Connection conexion = null;
 		try
 		{
 			conexion = DriverManager.getConnection("jdbc:sqlite:base_datos.db");
-<<<<<<< HEAD
-			String consulta = "SELECT Nombre, Puntuación, Tiempo, Velocidad, Paredes, Bloques FROM TablaSnake";
-=======
-			String consulta = "SELECT Nombre, Puntuación, Tiempo, Velocidad, Paredes, Bloques FROM TablaSnake ORDER BY Puntuación DESC";
->>>>>>> branch 'master' of https://github.com/Gontzaa86/ProyectoProgram3
+			String consulta = "SELECT Nombre, Puntuación, Tiempo, Velocidad FROM TablaPacMan ORDER BY Puntuación DESC";
 			try
 			{
 				PreparedStatement stmt = conexion.prepareStatement(consulta);
@@ -76,9 +67,7 @@ public class MenuTablaSnake extends JFrame
 						rS.getString("Nombre"),
 						rS.getInt("Puntuación"),
 						rS.getInt("Tiempo"),
-						rS.getInt("Velocidad"),
-						rS.getString("Paredes"),
-						rS.getString("Bloques")
+						rS.getInt("Velocidad")
 					};
 					
 					modelo.addRow(fila);
