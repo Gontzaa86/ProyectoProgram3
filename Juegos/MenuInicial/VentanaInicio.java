@@ -97,7 +97,7 @@ public class VentanaInicio{
 		
 		JLabel lblFondo = new JLabel("");
 		lblFondo.setIcon(new ImageIcon(VentanaInicio.class.getResource("game.png")));
-		lblFondo.setBounds(0, 0, 626, 469);
+		lblFondo.setBounds(0, 0, 626, 432);
 		contentPane.add(lblFondo);
 		
 	}
