@@ -64,18 +64,8 @@ public class juegoMenuPacman extends JFrame {
 		contentPane.add(slVelocidad);
 		
 		JTextArea textArea = new JTextArea();
-		textArea.setBounds(517, 123, 20, 15);
+		textArea.setBounds(536, 187, 20, 15);
 		contentPane.add(textArea);
-		
-		JCheckBox chBloques = new JCheckBox("");
-		chBloques.setOpaque(false);
-		chBloques.setBounds(122, 180, 21, 24);
-		contentPane.add(chBloques);
-		
-		JCheckBox chPared = new JCheckBox("");
-		chPared.setOpaque(false);
-		chPared.setBounds(122, 228, 21, 24);
-		contentPane.add(chPared);
 		
 		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new ActionListener() {
@@ -129,7 +119,7 @@ public class juegoMenuPacman extends JFrame {
 				new MenuTablaPacMan();
 			}
 		});
-		btnTabla.setBounds(476, 284, 134, 29);
+		btnTabla.setBounds(298, 270, 134, 29);
 		btnTabla.setForeground(new Color (255, 255, 255));
 		btnTabla.setBackground(new Color(0, 0, 0));
 		btnTabla.setOpaque(false);

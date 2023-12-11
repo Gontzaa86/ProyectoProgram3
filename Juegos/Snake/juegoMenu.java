@@ -180,7 +180,7 @@ public class juegoMenu extends JFrame {
 		});
 		contentPane.add(btnTabla);
 
-		JLabel lblFondo = new JLabel("New label");
+		JLabel lblFondo = new JLabel("");
 		lblFondo.setBounds(0, 0, 610, 395);
 		contentPane.add(lblFondo);
 		SetImageLabel(lblFondo, juegoMenu.class.getResource("SnakeFondo.png"));

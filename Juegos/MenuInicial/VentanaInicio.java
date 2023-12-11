@@ -3,6 +3,8 @@ package MenuInicial;
 import java.awt.Dimension;
 import java.util.ArrayList;
 
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -16,12 +18,17 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.Color;
 
-public class VentanaInicio {
+public class VentanaInicio{
+	public VentanaInicio() {
+	}
+	Icon icon;
 
 	public static void main(String... args) {
 		JFrame frame = new JFrame();
 		JPanel panel = new JPanel();
+		panel.setBackground(new Color(0, 0, 0));
 
 		//ArrayList con los juegos
 		ArrayList<Main> listaJuegos = new ArrayList<Main>();
@@ -33,10 +40,19 @@ public class VentanaInicio {
 			for (Main juego : listaJuegos)
 			{
 				JButton botonJuego = new JButton();
-				botonJuego.setPreferredSize(new Dimension(100, 185));
+				botonJuego.setPreferredSize(new Dimension(165, 250));
 				botonJuego.setText(juego.toString());
 				botonJuego.setBounds((110 * listaJuegos.indexOf(juego)), 0, 100, 200);
-				botonJuego.setVerticalAlignment(SwingConstants.BOTTOM);
+				botonJuego.setHorizontalTextPosition( SwingConstants.CENTER );
+				botonJuego.setVerticalTextPosition( SwingConstants.BOTTOM );
+				if(listaJuegos.indexOf(juego) == 0)
+				{
+					botonJuego.setIcon(new ImageIcon(VentanaInicio.class.getResource("snakeIcon.png")));
+				}
+				if(listaJuegos.indexOf(juego) == 1)
+				{
+					botonJuego.setIcon(new ImageIcon(VentanaInicio.class.getResource("pacmanIcon.png")));
+				}
 				panel.add(botonJuego);
 
 				botonJuego.addActionListener(new ActionListener() 
@@ -57,26 +73,32 @@ public class VentanaInicio {
 				});
 			}
 		}
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setVisible(true);
 
 		JScrollPane scrollPane = new JScrollPane(panel);
 		scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
-		scrollPane.setBounds(10, 110, 480, 237);
+		scrollPane.setBounds(225, 97, 180, 277);
 
 		JPanel contentPane = new JPanel(null);
-		contentPane.setPreferredSize(new Dimension(500, 400));
+		contentPane.setPreferredSize(new Dimension(626, 469));
+		contentPane.setLayout(null);
 		contentPane.add(scrollPane);
 
 		frame.setContentPane(contentPane);
 
 		JLabel textoTitulo = new JLabel("Juegos Arcade");
+		textoTitulo.setForeground(new Color(255, 255, 255));
 		textoTitulo.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 20));
 		textoTitulo.setHorizontalAlignment(SwingConstants.CENTER);
-		textoTitulo.setBounds(10, 23, 480, 32);
+		textoTitulo.setBounds(65, 62, 480, 32);
 		contentPane.add(textoTitulo);
-
-		frame.pack();
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setVisible(true);
+		
+		JLabel lblFondo = new JLabel("");
+		lblFondo.setIcon(new ImageIcon(VentanaInicio.class.getResource("game.png")));
+		lblFondo.setBounds(0, 0, 626, 469);
+		contentPane.add(lblFondo);
+		
 	}
 }
