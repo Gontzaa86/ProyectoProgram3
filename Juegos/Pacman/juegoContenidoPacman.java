@@ -9,12 +9,14 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.logging.Logger;
 
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
 import BaseDeDatos.GestorBD;
+import Snake.juegoContenido;
 
 public class juegoContenidoPacman extends JPanel implements ActionListener{
 	
@@ -93,6 +95,9 @@ public class juegoContenidoPacman extends JPanel implements ActionListener{
 	
 	//Tiempo fianl
 	int tiempo = 0;
+	
+	//Logger
+	Logger logger = Logger.getLogger(juegoContenido.class.getName());
 	
 	Random random = new Random();
 	
@@ -319,11 +324,11 @@ public class juegoContenidoPacman extends JPanel implements ActionListener{
 			
 			//Nombre de usuario
 			nombre = JOptionPane.showInputDialog("Introduzca su usuario, si no lo hace, o lo cancela, la partida no quedará registrada");
-			System.out.println(nombre);
 			
 			if (nombre.isEmpty() == false)
 			{
 				guardarDatosBaseDatos();
+				logger.info("La variable 'Nombre' fue asignada correctamente: " + nombre);
 			}
 			else
 			{
@@ -361,11 +366,11 @@ public class juegoContenidoPacman extends JPanel implements ActionListener{
 			
 			//Nombre de usuario
 			nombre = JOptionPane.showInputDialog("Introduzca su usuario, si no lo hace, o lo cancela, la partida no quedará registrada");
-			System.out.println(nombre);
 			
 			if (nombre.isEmpty() == false)
 			{
 				guardarDatosBaseDatos();
+				logger.info("La variable 'Nombre' fue asignada correctamente: " + nombre);
 			}
 			else
 			{
