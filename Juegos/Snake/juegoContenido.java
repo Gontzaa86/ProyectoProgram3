@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.util.logging.Logger;
 import java.util.Random;
 
 import javax.swing.JOptionPane;
@@ -68,6 +69,9 @@ public class juegoContenido extends JPanel implements ActionListener {
 	
 	//Tiempo final de la partida
 	int tiempo;
+	
+	//Logger
+	Logger logger = Logger.getLogger(juegoContenido.class.getName());
 	
 	public juegoContenido(int velocidad, boolean bloque, boolean pared){
 		
@@ -146,11 +150,11 @@ public class juegoContenido extends JPanel implements ActionListener {
 				
 				//Nombre de usuario
 				nombre = JOptionPane.showInputDialog("Introduzca su usuario, si no lo hace, o lo cancela, la partida no quedará registrada");
-				System.out.println(nombre);
 				
 				if (nombre.isEmpty() == false)
 				{
 					guardarDatosBaseDatos();
+					logger.info("La variable 'Nombre' fue asignada correctamente: " + nombre);
 				}
 				else
 				{
@@ -187,6 +191,7 @@ public class juegoContenido extends JPanel implements ActionListener {
 				if (nombre.isEmpty() == false)
 				{
 					guardarDatosBaseDatos();
+					logger.info("La variable 'Nombre' fue asignada correctamente: " + nombre);
 				}
 				else
 				{
@@ -211,6 +216,7 @@ public class juegoContenido extends JPanel implements ActionListener {
 				if (nombre.isEmpty() == false)
 				{
 					guardarDatosBaseDatos();
+					logger.info("La variable 'Nombre' fue asignada correctamente, usuario: " + nombre);
 				}
 				else
 				{
@@ -267,13 +273,13 @@ public class juegoContenido extends JPanel implements ActionListener {
 					{
 						Thread.sleep(1000);
 						tiempo++;
-						System.out.println(tiempo);
 					}
 					catch (InterruptedException e)
 					{
 						e.printStackTrace();
 					}
 				}
+				logger.info("La variable 'Tiempo' fue asignada correctamente, tiempo: " + tiempo + " segundos");
 			}
 		};
 		hiloTiempo.start();
