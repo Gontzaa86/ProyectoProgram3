@@ -9,12 +9,14 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.logging.Logger;
 
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
 import BaseDeDatos.GestorBD;
+import Snake.juegoContenido;
 
 public class juegoContenidoPacman extends JPanel implements ActionListener{
 	
@@ -30,18 +32,26 @@ public class juegoContenidoPacman extends JPanel implements ActionListener{
 	int pacmanY = 0;
 	
 	//fantasma verde
+	int numVerdeX=0;
+	int numVerdeY=100;
 	int fantasmaVerdeX = 100;
 	int fantasmaVerdeY = 100;
 	
 	//fantasma rojo
+	int numRojoX=100;
+	int numRojoY=0;
 	int fantasmaRojoX = 300;
 	int fantasmaRojoY = 300;
 	
 	//fantasma rosa
+	int numRosaX=400;
+	int numRosaY=0;
 	int fantasmaRosaX = 100;
 	int fantasmaRosaY = 300;
 	
 	//fantasma naranja
+	int numNaranjaX=0;
+	int numNaranjaY=400;
 	int fantasmaNaranjaX = 300;
 	int fantasmaNaranjaY = 100;
 	
@@ -86,6 +96,9 @@ public class juegoContenidoPacman extends JPanel implements ActionListener{
 	//Tiempo fianl
 	int tiempo = 0;
 	
+	//Logger
+	Logger logger = Logger.getLogger(juegoContenido.class.getName());
+	
 	Random random = new Random();
 	
 	public juegoContenidoPacman(int velocidad) {
@@ -120,66 +133,154 @@ public class juegoContenidoPacman extends JPanel implements ActionListener{
 	}
 	
 	public void moverFantasmas() {
-		int numVerde = (int) (Math.random()*4);
-		switch(numVerde){
+		//Fantasma Verde
+		if (fantasmaVerdeX>(PANTALLA-20)) {
+			numVerdeX = 1;
+			fantasmaVerdeY = (int) (Math.random()*PANTALLA);
+			fantasmaVerdeX-=20;
+		}
+		else if (fantasmaVerdeX<20) {
+			numVerdeX = 0;
+			fantasmaVerdeY = (int) (Math.random()*PANTALLA);
+			fantasmaVerdeX+=20;
+		}
+		if (fantasmaVerdeY>(PANTALLA-20)) {
+			fantasmaVerdeX = (int) (Math.random()*2);
+			numVerdeY = 0;
+			fantasmaVerdeY-=20;
+		}else if (fantasmaVerdeY<20) {
+			fantasmaVerdeX = (int) (Math.random()*2);
+			numVerdeY = 1;
+			fantasmaVerdeX+=20;
+		}
+		
+		switch(numVerdeX){
 		case 0:
 			fantasmaVerdeX += CUADRITO_SIZE;
 			break;
 		case 1:
 			fantasmaVerdeX -= CUADRITO_SIZE;
 			break;
-		case 2:
+		}
+		switch(numVerdeY) {
+		case 0:
 			fantasmaVerdeY -= CUADRITO_SIZE;
 			break;
-		case 3:
+		case 1:
 			fantasmaVerdeY += CUADRITO_SIZE;
 			break;
 		}
 		
-		int numRojo = (int) (Math.random()*4);
-		switch(numRojo){
+		//Fantasma Rojo
+		if (fantasmaRojoX>(PANTALLA-20)) {
+			numRojoX = 1;
+			fantasmaRojoY = (int) (Math.random()*PANTALLA);
+			fantasmaRojoX-=20;
+		}
+		else if (fantasmaRojoX<20) {
+			numRojoX = 0;
+			fantasmaRojoY = (int) (Math.random()*PANTALLA);
+			fantasmaRojoX+=20;
+		}
+		if (fantasmaRojoY>(PANTALLA-20)) {
+			fantasmaRojoX = (int) (Math.random()*PANTALLA);
+			numRojoY = 0;
+			fantasmaRojoY-=20;
+		}else if (fantasmaRojoY<20) {
+			fantasmaRojoX = (int) (Math.random()*PANTALLA);
+			numRojoY = 1;
+			fantasmaRojoX+=20;
+		}
+		
+		switch(numRojoX){
 		case 0:
 			fantasmaRojoX += CUADRITO_SIZE;
 			break;
 		case 1:
 			fantasmaRojoX -= CUADRITO_SIZE;
 			break;
-		case 2:
+		}
+		switch(numRojoY) {
+		case 0:
 			fantasmaRojoY -= CUADRITO_SIZE;
 			break;
-		case 3:
+		case 1:
 			fantasmaRojoY += CUADRITO_SIZE;
 			break;
 		}
 		
-		int numRosa = (int) (Math.random()*4);
-		switch(numRosa){
+		//Fantasma Rosa
+		if (fantasmaRosaX>(PANTALLA-20)) {
+			numRosaX = 1;
+			fantasmaRosaY = (int) (Math.random()*PANTALLA);
+			fantasmaRosaX-=20;
+		}
+		else if (fantasmaRosaX<20) {
+			numRosaX = 0;
+			fantasmaRosaY = (int) (Math.random()*PANTALLA);
+			fantasmaRosaX+=20;
+		}
+		if (fantasmaRosaY>(PANTALLA-20)) {
+			fantasmaRosaX = (int) (Math.random()*PANTALLA);
+			numRosaY = 0;
+			fantasmaRosaY-=20;
+		}else if (fantasmaRosaY<20) {
+			fantasmaRosaX = (int) (Math.random()*PANTALLA);
+			numRosaY = 1;
+			fantasmaRosaX+=20;
+		}
+		
+		switch(numRosaX){
 		case 0:
 			fantasmaRosaX += CUADRITO_SIZE;
 			break;
 		case 1:
 			fantasmaRosaX -= CUADRITO_SIZE;
 			break;
-		case 2:
+		}
+		switch(numRosaY) {
+		case 0:
 			fantasmaRosaY -= CUADRITO_SIZE;
 			break;
-		case 3:
+		case 1:
 			fantasmaRosaY += CUADRITO_SIZE;
 			break;
 		}
 		
-		int numNaranja = (int) (Math.random()*4);
-		switch(numNaranja){
+		//Fantasma Naranja
+		if (fantasmaNaranjaX>(PANTALLA-20)) {
+			numNaranjaX = 1;
+			fantasmaNaranjaY = (int) (Math.random()*PANTALLA);
+			fantasmaNaranjaX-=20;
+		}
+		else if (fantasmaNaranjaX<20) {
+			numNaranjaX = 0;
+			fantasmaNaranjaY = (int) (Math.random()*PANTALLA);
+			fantasmaNaranjaX+=20;
+		}
+		if (fantasmaNaranjaY>(PANTALLA-20)) {
+			fantasmaNaranjaX = (int) (Math.random()*PANTALLA);
+			numNaranjaY = 0;
+			fantasmaNaranjaY-=20;
+		}else if (fantasmaNaranjaY<0) {
+			fantasmaNaranjaX = (int) (Math.random()*PANTALLA);
+			numNaranjaY = 1;
+			fantasmaNaranjaX+=20;
+		}
+		
+		switch(numNaranjaX){
 		case 0:
 			fantasmaNaranjaX += CUADRITO_SIZE;
 			break;
 		case 1:
 			fantasmaNaranjaX -= CUADRITO_SIZE;
 			break;
-		case 2:
+		}
+		switch(numNaranjaY) {
+		case 0:
 			fantasmaNaranjaY -= CUADRITO_SIZE;
 			break;
-		case 3:
+		case 1:
 			fantasmaNaranjaY += CUADRITO_SIZE;
 			break;
 		}
@@ -208,13 +309,14 @@ public class juegoContenidoPacman extends JPanel implements ActionListener{
 		for (int i=0; i<contPunto; i++) {
 			if (pacmanX == puntoX[i]-8 && pacmanY == puntoY[i]-8) {
 				puntoNegroX.add(puntoX[i]);
-				puntoNegroY.add(puntoY[i]);
+				puntoNegroY.add(puntoY[i]);	
 				if (i == 0 || i==12 || i==156 || i == 168) {
 					puntuacion+=5;
 				}
-				puntuacion++;					
+				puntuacion++;
 			}
 		}
+		
 		if(puntoNegroX.size()==169) {
 			running=false;
 			finish=false;
@@ -222,11 +324,11 @@ public class juegoContenidoPacman extends JPanel implements ActionListener{
 			
 			//Nombre de usuario
 			nombre = JOptionPane.showInputDialog("Introduzca su usuario, si no lo hace, o lo cancela, la partida no quedará registrada");
-			System.out.println(nombre);
 			
 			if (nombre.isEmpty() == false)
 			{
 				guardarDatosBaseDatos();
+				logger.info("La variable 'Nombre' fue asignada correctamente: " + nombre);
 			}
 			else
 			{
@@ -264,11 +366,11 @@ public class juegoContenidoPacman extends JPanel implements ActionListener{
 			
 			//Nombre de usuario
 			nombre = JOptionPane.showInputDialog("Introduzca su usuario, si no lo hace, o lo cancela, la partida no quedará registrada");
-			System.out.println(nombre);
 			
 			if (nombre.isEmpty() == false)
 			{
 				guardarDatosBaseDatos();
+				logger.info("La variable 'Nombre' fue asignada correctamente: " + nombre);
 			}
 			else
 			{
@@ -276,50 +378,6 @@ public class juegoContenidoPacman extends JPanel implements ActionListener{
 			}
 		}
 		
-		//Bloquear fantasma
-		if (fantasmaVerdeX>(PANTALLA)) {
-			fantasmaVerdeX-=40;
-		}else if (fantasmaVerdeX<0) {
-			fantasmaVerdeX+=40;
-		}
-		if (fantasmaVerdeY>(PANTALLA)) {
-			fantasmaVerdeY-=40;
-		}else if (fantasmaVerdeY<0) {
-			fantasmaVerdeX+=40;
-		}
-		
-		if (fantasmaRojoX>(PANTALLA)) {
-			fantasmaRojoX-=40;
-		}else if (fantasmaRojoX<0) {
-			fantasmaRojoX+=40;
-		}
-		if (fantasmaRojoY>(PANTALLA)) {
-			fantasmaRojoY-=40;
-		}else if (fantasmaRojoY<0) {
-			fantasmaRojoX+=40;
-		}
-		
-		if (fantasmaRosaX>(PANTALLA)) {
-			fantasmaRosaX-=40;
-		}else if (fantasmaRosaX<0) {
-			fantasmaRosaX+=40;
-		}
-		if (fantasmaRosaY>(PANTALLA)) {
-			fantasmaRosaY-=40;
-		}else if (fantasmaRosaY<0) {
-			fantasmaRosaX+=40;
-		}
-		
-		if (fantasmaNaranjaX>(PANTALLA)) {
-			fantasmaNaranjaX-=40;
-		}else if (fantasmaNaranjaX<0) {
-			fantasmaNaranjaX+=40;
-		}
-		if (fantasmaNaranjaY>(PANTALLA)) {
-			fantasmaNaranjaY-=40;
-		}else if (fantasmaNaranjaY<0) {
-			fantasmaNaranjaX+=40;
-		}
 	}
 	
 	public void actionPerformed(ActionEvent e) {
@@ -422,7 +480,6 @@ public class juegoContenidoPacman extends JPanel implements ActionListener{
 					{
 						Thread.sleep(1000);
 						tiempo++;
-						System.out.println(tiempo);
 					}
 					catch (InterruptedException e)
 					{
