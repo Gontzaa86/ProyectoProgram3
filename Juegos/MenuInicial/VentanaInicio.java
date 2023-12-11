@@ -10,9 +10,7 @@ import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 
 import Pacman.InicioPacman;
-import Pacman.MenuTablaPacMan;
 import Snake.InicioSnake;
-import Snake.MenuTablaSnake;
 
 import javax.swing.JLabel;
 import java.awt.Font;
