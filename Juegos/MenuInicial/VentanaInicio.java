@@ -29,8 +29,8 @@ public class VentanaInicio{
 
 		//ArrayList con los juegos
 		ArrayList<Main> listaJuegos = new ArrayList<Main>();
-		listaJuegos.add(new InicioSnake());		//Index 0
-		listaJuegos.add(new InicioPacman());	//Index 1
+		listaJuegos.add(new InicioSnake());		
+		listaJuegos.add(new InicioPacman());	
 
 		if (listaJuegos != null)
 		{
@@ -42,11 +42,13 @@ public class VentanaInicio{
 				botonJuego.setBounds((110 * listaJuegos.indexOf(juego)), 0, 100, 200);
 				botonJuego.setHorizontalTextPosition( SwingConstants.CENTER );
 				botonJuego.setVerticalTextPosition( SwingConstants.BOTTOM );
-				if(listaJuegos.indexOf(juego) == 0)
+				//Código para poner un icono según el "toString()" del juego
+				//Para poder implementar otro juego de la misma forma habría que crear un método toString() en el "inicio" de dicho juego
+				if(juego.toString() == "SNAKE")
 				{
 					botonJuego.setIcon(new ImageIcon(VentanaInicio.class.getResource("snakeIcon.png")));
 				}
-				if(listaJuegos.indexOf(juego) == 1)
+				if(juego.toString() == "PAC-MAN")
 				{
 					botonJuego.setIcon(new ImageIcon(VentanaInicio.class.getResource("pacmanIcon.png")));
 				}
@@ -56,12 +58,12 @@ public class VentanaInicio{
 				{
 					public void actionPerformed(ActionEvent e) 
 					{	
-						if(listaJuegos.indexOf(juego) == 0)
+						if(juego.toString() == "SNAKE")
 						{
 							juego.iniciarSnake();
 						}
 						
-						if(listaJuegos.indexOf(juego) == 1)
+						if(juego.toString() == "PAC-MAN")
 						{
 							juego.iniciarPacMan();
 						}	
