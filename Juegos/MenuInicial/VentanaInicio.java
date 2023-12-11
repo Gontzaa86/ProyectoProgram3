@@ -45,15 +45,15 @@ public class VentanaInicio {
 				{
 					public void actionPerformed(ActionEvent e) 
 					{	
-						if(juego.toString() == "SNAKE")
+						if(listaJuegos.indexOf(juego) == 0)
 						{
 							juego.iniciarSnake();
 						}
-						if(juego.toString() == "PAC-MAN");
+						
+						if(listaJuegos.indexOf(juego) == 1)
 						{
 							juego.iniciarPacMan();
-						}
-						
+						}	
 					}
 
 				});
