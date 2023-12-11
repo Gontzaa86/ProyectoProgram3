@@ -3,7 +3,6 @@ package MenuInicial;
 import java.awt.Dimension;
 import java.util.ArrayList;
 
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
