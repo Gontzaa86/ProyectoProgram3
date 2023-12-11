@@ -10,7 +10,9 @@ import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 
 import Pacman.InicioPacman;
+import Pacman.MenuTablaPacMan;
 import Snake.InicioSnake;
+import Snake.MenuTablaSnake;
 
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -33,9 +35,9 @@ public class VentanaInicio {
 			for (Main juego : listaJuegos)
 			{
 				JButton botonJuego = new JButton();
-				botonJuego.setPreferredSize(new Dimension(100, 200));
+				botonJuego.setPreferredSize(new Dimension(100, 185));
 				botonJuego.setText(juego.toString());
-				botonJuego.setBounds((110 * listaJuegos.indexOf(juego)), 0, 100, 180);
+				botonJuego.setBounds((110 * listaJuegos.indexOf(juego)), 0, 100, 200);
 				botonJuego.setVerticalAlignment(SwingConstants.BOTTOM);
 				panel.add(botonJuego);
 
@@ -43,14 +45,11 @@ public class VentanaInicio {
 				{
 					public void actionPerformed(ActionEvent e) 
 					{	
-						//Segun el index ejecuta un juego u otro
-						//Se puede cambiar a una forma que te permita modificar el orden de la lista sin tener que cambiarlo
-						//Pero no se como se podría hacer y esto es la forma más simple que se me ha ocurrido
-						if(listaJuegos.indexOf(juego) == 0)
+						if(juego.toString() == "SNAKE")
 						{
 							juego.iniciarSnake();
 						}
-						if(listaJuegos.indexOf(juego) == 1)
+						if(juego.toString() == "PAC-MAN");
 						{
 							juego.iniciarPacMan();
 						}
@@ -72,8 +71,8 @@ public class VentanaInicio {
 
 		frame.setContentPane(contentPane);
 
-		JLabel textoTitulo = new JLabel("Título");
-		textoTitulo.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 18));
+		JLabel textoTitulo = new JLabel("Juegos Arcade");
+		textoTitulo.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 20));
 		textoTitulo.setHorizontalAlignment(SwingConstants.CENTER);
 		textoTitulo.setBounds(10, 23, 480, 32);
 		contentPane.add(textoTitulo);

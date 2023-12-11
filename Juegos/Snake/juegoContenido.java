@@ -186,7 +186,6 @@ public class juegoContenido extends JPanel implements ActionListener {
 				
 				//Nombre de usuario
 				nombre = JOptionPane.showInputDialog("Introduzca su usuario, si no lo hace, o lo cancela, la partida no quedará registrada");
-				System.out.println(nombre);
 				
 				if (nombre.isEmpty() == false)
 				{
@@ -211,7 +210,6 @@ public class juegoContenido extends JPanel implements ActionListener {
 				
 				//Nombre de usuario
 				nombre = JOptionPane.showInputDialog("Introduzca su usuario, si no lo hace, o lo cancela, la partida no quedará registrada");
-				System.out.println(nombre);
 				
 				if (nombre.isEmpty() == false)
 				{
