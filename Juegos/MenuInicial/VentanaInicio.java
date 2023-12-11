@@ -18,12 +18,10 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.BorderLayout;
 import java.awt.Color;
 
 public class VentanaInicio{
-	public VentanaInicio() {
-	}
-	Icon icon;
 
 	public static void main(String... args) {
 		JFrame frame = new JFrame();
@@ -82,23 +80,27 @@ public class VentanaInicio{
 		scrollPane.setBounds(225, 97, 180, 277);
 
 		JPanel contentPane = new JPanel(null);
-		contentPane.setPreferredSize(new Dimension(626, 469));
+		contentPane.setPreferredSize(new Dimension(626, 432));
 		contentPane.setLayout(null);
 		contentPane.add(scrollPane);
-
+		
+		frame.getContentPane().setPreferredSize(new Dimension(626, 432));
 		frame.setContentPane(contentPane);
 
-		JLabel textoTitulo = new JLabel("Juegos Arcade");
+		JLabel textoTitulo = new JLabel("  Juegos Arcade");
 		textoTitulo.setForeground(new Color(255, 255, 255));
 		textoTitulo.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 20));
 		textoTitulo.setHorizontalAlignment(SwingConstants.CENTER);
-		textoTitulo.setBounds(65, 62, 480, 32);
+		textoTitulo.setBounds(10, 62, 598, 32);
 		contentPane.add(textoTitulo);
 		
-		JLabel lblFondo = new JLabel("");
+		JLabel lblFondo = new JLabel();
 		lblFondo.setIcon(new ImageIcon(VentanaInicio.class.getResource("game.png")));
+		lblFondo.setLayout(new BorderLayout());
 		lblFondo.setBounds(0, 0, 626, 432);
 		contentPane.add(lblFondo);
+		
+		frame.pack();
 		
 	}
 }
